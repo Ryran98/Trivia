@@ -216,7 +216,10 @@ def create_app(test_config=None):
 
     formatted_questions = [question.format() for question in available_questions]
     if len(formatted_questions) == 0:
-      abort(404)
+      return jsonify({
+        'success': True,
+        'question': None
+      })
 
     next_question = available_questions[random.randint(0, len(formatted_questions) - 1)].format()
 
